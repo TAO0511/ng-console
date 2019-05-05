@@ -1,3 +1,4 @@
+import { HeroService } from './services/hero.service';
 import { Component } from '@angular/core';
 
 @Component({
@@ -7,4 +8,16 @@ import { Component } from '@angular/core';
 })
 export class AppComponent {
   title = 'console';
+  constructor(private heroService: HeroService) {
+    this.getHero(11);
+  }
+
+  getHero(id) {
+    let params = {
+      id: id
+    }
+    this.heroService.getHeroes(params).then(res => {
+      console.log(res);
+    });
+  }
 }
