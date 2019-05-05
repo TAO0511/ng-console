@@ -1,4 +1,4 @@
-<nz-layout style="height:100%;">
+<!-- <nz-layout style="height:100%;">
   <nz-header>header</nz-header>
   <nz-layout>
     <nz-sider [nzTheme]="'light'">left sidebar
@@ -10,7 +10,51 @@
       <router-outlet></router-outlet>
     </nz-content>
   </nz-layout>
-</nz-layout>
+</nz-layout> -->
 
+<div class="cl-container">
+  <div class="cl-header"></div>
+  <div class="cl-layout">
+    <div class="cl-nav">
+      <ul nz-menu [nzMode]="'inline'" style="height:100%;">
+        <!-- <li nz-menu-item>
+          <span title>
+            <i nz-icon nzType="mail" nzTheme="outline"></i>
+            <span>Navigation One</span>
+          </span>
+        </li>
+        <li nz-submenu [nzOpen]="true">
+          <span title>
+            <i nz-icon nzType="database" nzTheme="outline"></i>
+            <span>数据展示</span>
+          </span>
+          <ul>
+            <li nz-menu-item (click)="selectNav('/table')" [nzSelected]="true">表格</li>
+            <li nz-menu-item>表单</li>
+          </ul>
+        </li> -->
+        <div *ngFor="let nav of navList">
+          <li nz-menu-item *ngIf="!(nav.children && nav.children.length)" [nzSelected]="nav.isSelected">
+            <span title (click)="selectNav(nav.url)">
+              <i nz-icon nzType="{{nav.icon}}" nzTheme="outline"></i>
+              <span>{{nav.name}}</span>
+            </span>
+          </li>
+          <li nz-submenu [nzOpen]="nav.isOpen" *ngIf="nav.children && nav.children.length">
+            <span title>
+              <i nz-icon nzType="{{nav.icon}}" nzTheme="outline"></i>
+              <span>{{nav.name}}</span>
+            </span>
+            <ul *ngIf="nav.children && nav.children.length">
+              <li nz-menu-item (click)="selectNav(child.url)" [nzSelected]="child.isSelected" *ngFor="let child of nav.children">{{child.name}}</li>
+            </ul>
+          </li>
 
-
+        </div>
+      </ul>
+    </div>
+    <div class="cl-content">
+      <router-outlet></router-outlet>
+    </div>
+  </div>
+</div>

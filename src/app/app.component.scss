@@ -1,0 +1,27 @@
+.cl-container {
+  height: 100%;
+  .cl-header {
+    width: 100%;
+    height: 64px;
+    box-shadow: 0 2px 8px #f0f1f2;
+    position: fixed;
+    left: 0;
+    right: 0;
+  }
+
+  .cl-layout {
+    padding-top: 64px;
+    display: flex;
+    height: 100%;
+    .cl-nav {
+      width: 240px;
+      height: 100%;
+    }
+
+    .cl-content {
+      flex: 1;
+      height: 100%;
+    }
+  }
+
+}
